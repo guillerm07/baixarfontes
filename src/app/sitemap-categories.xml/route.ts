@@ -17,11 +17,11 @@ export async function GET() {
     xml += `  <url><loc>${BASE_URL}/categoria/${slug}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
   }
 
-  // Child categories
+  // Child categories (cat.parentName usa o nome original da DB em espanhol)
   for (const cat of categories) {
-    const parentInfo = PARENT_CATEGORIES[cat.parentName];
-    if (!parentInfo) continue;
-    xml += `  <url><loc>${BASE_URL}/categoria/${parentInfo.slug}/${toSlug(cat.childName)}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>\n`;
+    const entry = Object.values(PARENT_CATEGORIES).find((p) => p.dbName === cat.parentName);
+    if (!entry) continue;
+    xml += `  <url><loc>${BASE_URL}/categoria/${entry.slug}/${toSlug(cat.childName)}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>\n`;
   }
 
   xml += `</urlset>`;

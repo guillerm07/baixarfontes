@@ -6,7 +6,7 @@ import { FontPreview } from "@/components/FontPreview";
 import { CharacterMap } from "@/components/CharacterMap";
 import { FontCardPreview } from "@/components/FontCardPreview";
 import { prisma } from "@/lib/prisma";
-import { getCategorySlugs } from "@/lib/categories";
+import { getCategorySlugs, DB_NAME_TO_DISPLAY } from "@/lib/categories";
 
 function formatDatePT(dateStr: string): string {
   if (dateStr.toLowerCase().startsWith("before")) {
@@ -88,7 +88,7 @@ export default async function FontPage({ params }: Props) {
               href={`/categoria/${categorySlugs.parentSlug}`}
               className="hover:text-primary-600"
             >
-              {font.categoryName.split(" > ")[0]}
+              {DB_NAME_TO_DISPLAY[font.categoryName.split(" > ")[0]] || font.categoryName.split(" > ")[0]}
             </Link>
             <span>/</span>
             <Link
@@ -252,7 +252,7 @@ export default async function FontPage({ params }: Props) {
                     {
                       "@type": "ListItem",
                       position: 2,
-                      name: font.categoryName.split(" > ")[0],
+                      name: DB_NAME_TO_DISPLAY[font.categoryName.split(" > ")[0]] || font.categoryName.split(" > ")[0],
                       item: `https://baixarfontes.com/categoria/${categorySlugs.parentSlug}`,
                     },
                     {

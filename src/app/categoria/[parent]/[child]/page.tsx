@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { SLUG_TO_PARENT, toSlug } from "@/lib/categories";
+import { SLUG_TO_PARENT, SLUG_TO_DB_NAME, toSlug } from "@/lib/categories";
 import { FontCard } from "@/components/FontCard";
 import { Pagination } from "@/components/Pagination";
 
@@ -16,13 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parentName = SLUG_TO_PARENT[parent];
   if (!parentName) return {};
 
-  // Buscar o nome real da subcategoria
-  const category = await prisma.category.findFirst({
-    where: { parentName },
-  });
+  // Buscar subcategorias usando o nome original da DB
+  const dbName = SLUG_TO_DB_NAME[parent] || parentName;
 
   // Buscar a subcategoria que coincida com o slug
-  const allSubs = await prisma.category.findMany({ where: { parentName } });
+  const allSubs = await prisma.category.findMany({ where: { parentName: dbName } });
   const sub = allSubs.find((s) => toSlug(s.childName) === child);
 
   const childName = sub?.childName || child;
@@ -41,8 +39,9 @@ export default async function SubcategoryPage({ params, searchParams }: Props) {
   const parentName = SLUG_TO_PARENT[parent];
   if (!parentName) notFound();
 
-  // Encontrar a subcategoria real
-  const allSubs = await prisma.category.findMany({ where: { parentName } });
+  // Encontrar a subcategoria real (DB usa nomes em espanhol)
+  const dbName = SLUG_TO_DB_NAME[parent] || parentName;
+  const allSubs = await prisma.category.findMany({ where: { parentName: dbName } });
   const sub = allSubs.find((s) => toSlug(s.childName) === child);
   if (!sub) notFound();
 

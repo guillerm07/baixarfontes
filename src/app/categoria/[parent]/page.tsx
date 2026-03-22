@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
-import { SLUG_TO_PARENT, PARENT_CATEGORIES, toSlug } from "@/lib/categories";
+import { SLUG_TO_PARENT, SLUG_TO_DB_NAME, PARENT_CATEGORIES, toSlug } from "@/lib/categories";
 
 interface Props {
   params: Promise<{ parent: string }>;
@@ -30,9 +30,10 @@ export default async function CategoryPage({ params }: Props) {
 
   const parentInfo = PARENT_CATEGORIES[parentName];
 
-  // Obter subcategorias desta categoria principal
+  // Obter subcategorias desta categoria principal (DB usa nomes em espanhol)
+  const dbName = SLUG_TO_DB_NAME[parent] || parentName;
   const subcategories = await prisma.category.findMany({
-    where: { parentName },
+    where: { parentName: dbName },
     orderBy: { childName: "asc" },
   });
 
