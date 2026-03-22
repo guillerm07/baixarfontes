@@ -9,6 +9,11 @@ const nextConfig = {
         destination: "https://baixarfontes.com/:path*",
         permanent: true,
       },
+      {
+        source: "/categoria/extranjero/:path*",
+        destination: "/categoria/estrangeiro/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

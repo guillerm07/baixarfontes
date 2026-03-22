@@ -18,7 +18,7 @@ export const PARENT_CATEGORIES: Record<
     description: "As fontes Dingbats substituem as letras por símbolos, ícones e ilustrações. São perfeitas para decorar designs, criar separadores, adicionar ícones sem imagens ou complementar outros textos com elementos visuais. Incluem desde símbolos clássicos até emoticons, figuras, setas e elementos decorativos de todo tipo.",
   },
   "Estrangeiro": {
-    slug: "extranjero",
+    slug: "estrangeiro",
     dbName: "Estrangeiro",
     icon: "🌍",
     description: "Fontes com caracteres de alfabetos não latinos e estilos internacionais. Incluem tipografias árabes, chinesas, japonesas, coreanas, cirílicas, gregas, hebraicas, tailandesas e muitas mais. Ideais para projetos multilíngues, designs com temática cultural ou qualquer trabalho que exija escrita em outros sistemas.",
