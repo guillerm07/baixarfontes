@@ -19,13 +19,13 @@ export const PARENT_CATEGORIES: Record<
   },
   "Estrangeiro": {
     slug: "extranjero",
-    dbName: "Extranjero",
+    dbName: "Estrangeiro",
     icon: "🌍",
     description: "Fontes com caracteres de alfabetos não latinos e estilos internacionais. Incluem tipografias árabes, chinesas, japonesas, coreanas, cirílicas, gregas, hebraicas, tailandesas e muitas mais. Ideais para projetos multilíngues, designs com temática cultural ou qualquer trabalho que exija escrita em outros sistemas.",
   },
   "Fantasia": {
     slug: "fantasia",
-    dbName: "Fantasía",
+    dbName: "Fantasia",
     icon: "✨",
     description: "As fontes de fantasia são as mais criativas e expressivas do catálogo. Aqui você encontrará tipografias com estilos únicos: desde fontes que imitam a escrita à mão até designs futuristas, infantis, com efeito 3D, de contorno, sombreadas ou com texturas. Perfeitas para títulos, logos, cartazes e qualquer design que precise de personalidade.",
   },
@@ -37,7 +37,7 @@ export const PARENT_CATEGORIES: Record<
   },
   "Festivo": {
     slug: "festiva",
-    dbName: "Holiday",
+    dbName: "Festivo",
     icon: "🎄",
     description: "Fontes temáticas para ocasiões especiais e festividades. Encontre tipografias para Natal, Halloween, Dia dos Namorados, Páscoa e outras celebrações. Ideais para cartões de felicitações, convites, cartazes de eventos, decoração e projetos sazonais que queiram transmitir o espírito de cada festividade.",
   },
