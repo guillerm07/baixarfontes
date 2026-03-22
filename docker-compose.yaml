@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:/app/data/prod.db
+      - FONTS_ZIP_PATH=/app/data/fonts-zip
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    volumes:
+      # Banco de dados SQLite + ZIPs para download
+      - /srv/baixarfontes/data:/app/data
+      # TTFs/OTFs extraídos para pré-visualização com @font-face
+      - /srv/baixarfontes/fonts-preview:/app/public/fonts
+    restart: unless-stopped

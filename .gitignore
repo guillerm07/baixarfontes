@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+prisma/dev.db
+prisma/dev.db-journal
+.env
+.env.local
+public/fonts/*.ttf
+public/fonts/*.otf
+*.tsbuildinfo
+next-env.d.ts
+nul

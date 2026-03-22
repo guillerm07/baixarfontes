@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .font-card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-card p-5
+           hover:shadow-card-hover hover:border-gray-200 transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white px-6 py-2.5 rounded-lg font-semibold
+           hover:bg-primary-700 active:bg-primary-800 transition-all duration-150
+           shadow-sm hover:shadow;
+  }
+
+  .btn-download {
+    @apply bg-emerald-500 text-white px-6 py-3 rounded-xl font-bold
+           hover:bg-emerald-600 active:bg-emerald-700 transition-all duration-150
+           shadow-sm hover:shadow inline-flex items-center gap-2;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-900 tracking-tight;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

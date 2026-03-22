@@ -1,0 +1,83 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "linux-musl"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Font {
+  id                 Int      @id @default(autoincrement())
+  slug               String   @unique
+  name               String
+  authorName         String?
+  authorSlug         String?
+  categoryId         Int?
+  categoryName       String?
+  license            String?
+  downloadsTotal     Int      @default(0)
+  downloadsLocal     Int      @default(0)
+  downloadsYesterday Int      @default(0)
+  dateAdded          String?
+  fileSize           String?
+  numFiles           Int?
+  numGlyphs          Int?
+  fontUrl            String?
+  downloadUrl        String?
+  previewImageUrl    String?
+  fontFilePath       String?
+  detailScraped      Boolean  @default(false)
+  fontDownloaded     Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([license])
+  @@index([downloadsTotal])
+  @@index([name])
+  @@index([authorSlug])
+}
+
+model Category {
+  id         Int    @id
+  name       String
+  parentName String
+  childName  String
+  fontCount  Int    @default(0)
+
+  @@index([parentName])
+}
+
+model Author {
+  id        Int    @id @default(autoincrement())
+  slug      String @unique
+  name      String
+  fontCount Int    @default(0)
+}
+
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String
+  referrer  String?
+  userAgent String?
+  country   String?
+  createdAt DateTime @default(now())
+
+  @@index([path])
+  @@index([createdAt])
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([read])
+}
