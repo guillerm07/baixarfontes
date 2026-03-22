@@ -30,6 +30,9 @@ export const metadata: Metadata = {
       "Baixe mais de 98.000 fontes tipográficas grátis. Fontes para design, logos, web e muito mais.",
     url: "https://baixarfontes.com",
   },
+  verification: {
+    google: "eQWtHUYn1U2c5h7TXZBmddh9d2q8PnCNeMO62KKbC68",
+  },
   icons: {
     icon: "/favicon.svg",
   },
